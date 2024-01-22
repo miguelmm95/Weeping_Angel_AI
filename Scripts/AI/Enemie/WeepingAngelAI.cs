@@ -5,33 +5,22 @@ using UnityEngine.AI;
 
 public class WeepingAngelAI : MonoBehaviour
 {
-    public NavMeshAgent navAI;
-    public Transform player;
-    Vector3 destination;
-    public Camera playerCamera;
+    [SerializeField] NavMeshAgent navAI;
+    [SerializeField] Transform player;
+    [SerializeField] Vector3 destination;
+    
     [SerializeField] private float aiSpeed;
 
-    private void Update()
+    public void startChasing()
     {
-        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(playerCamera);
-
-        if (GeometryUtility.TestPlanesAABB(planes, this.gameObject.GetComponent<Renderer>().bounds))
-        {
-            navAI.speed = 0;
-            navAI.SetDestination(transform.position);
-        }
-
-        if (!GeometryUtility.TestPlanesAABB(planes, this.gameObject.GetComponent<Renderer>().bounds))
-        {
-            navAI.speed = aiSpeed;
-            destination = player.position;
-            navAI.destination = destination;
-        }
+        navAI.speed = aiSpeed;
+        destination = player.position;
+        navAI.destination = destination;
     }
 
-    //private void OnBecameInvisible()
-    //{
-        
-    //}
-    //}
+    public void endChasing()
+    {
+        navAI.speed = 0;
+        navAI.SetDestination(transform.position);
+    }
 }
