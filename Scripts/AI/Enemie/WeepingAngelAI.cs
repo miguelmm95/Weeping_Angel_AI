@@ -8,8 +8,8 @@ public class WeepingAngelAI : MonoBehaviour
     [SerializeField] NavMeshAgent navAI;
     [SerializeField] Transform player;
     [SerializeField] Vector3 destination;
-    
     [SerializeField] private float aiSpeed;
+    [SerializeField] public bool wasBehindAnObstacle;
 
     public void startChasing()
     {
@@ -22,5 +22,11 @@ public class WeepingAngelAI : MonoBehaviour
     {
         navAI.speed = 0;
         navAI.SetDestination(transform.position);
+    }
+
+    public void endChasingWithDelay()
+    {
+        navAI.speed = 0;
+        wasBehindAnObstacle = false;
     }
 }

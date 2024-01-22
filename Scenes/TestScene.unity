@@ -4388,7 +4388,7 @@ GameObject:
   - component: {fileID: 421192126}
   - component: {fileID: 421192125}
   m_Layer: 0
-  m_Name: Enemie
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4410,6 +4410,7 @@ MonoBehaviour:
   player: {fileID: 212110463}
   destination: {x: 0, y: 0, z: 0}
   aiSpeed: 30
+  wasBehindAnObstacle: 0
 --- !u!195 &421192126
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -4532,7 +4533,7 @@ GameObject:
   - component: {fileID: 557567561}
   - component: {fileID: 557567560}
   - component: {fileID: 557567559}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21553,7 +21554,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 313afe882b3a0d64cbec7905c847bed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemie: {fileID: 421192125}
+  enemy: {fileID: 421192125}
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!43 &2023426535
 Mesh:
   m_ObjectHideFlags: 0

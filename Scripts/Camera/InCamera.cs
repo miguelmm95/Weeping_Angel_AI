@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,25 +8,36 @@ public class InCamera : MonoBehaviour
 {
     Camera mainCamera;
     Plane[] cameraFrustum;
-    [SerializeField] WeepingAngelAI enemie;
+    [SerializeField] WeepingAngelAI enemy;
+    [SerializeField] LayerMask obstacleLayer;
 
     void Start()
     {
         mainCamera = Camera.main;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        var bounds = enemie.GetComponent<Collider>().bounds;
+        //Debug.DrawLine(transform.position, enemy.transform.position);
+
+        var bounds = enemy.GetComponent<Collider>().bounds;
         cameraFrustum = GeometryUtility.CalculateFrustumPlanes(mainCamera);
 
         if(GeometryUtility.TestPlanesAABB(cameraFrustum, bounds))
         {
-            enemie.endChasing();
+            if (Physics.Linecast(transform.position, enemy.transform.position, obstacleLayer))
+            {
+                enemy.startChasing();
+                enemy.wasBehindAnObstacle = true;
+            }
+            else
+            {
+                enemy.endChasing();
+            }
         }
         else
         {
-            enemie.startChasing();
+            enemy.startChasing();
         }
     }
 }
