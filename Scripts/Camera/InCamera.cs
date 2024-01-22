@@ -32,12 +32,27 @@ public class InCamera : MonoBehaviour
             }
             else
             {
-                enemy.endChasing();
+                if (enemy.wasBehindAnObstacle)
+                {
+                    StartCoroutine(CallEndChasingWithDelay());
+                }
+                else
+                {
+                    enemy.endChasing();
+                }
             }
         }
         else
         {
             enemy.startChasing();
         }
+    }
+
+    private IEnumerator CallEndChasingWithDelay()
+    {
+        
+        yield return new WaitForSeconds(0.25f);
+        enemy.endChasingWithDelay();
+        yield return null;
     }
 }
