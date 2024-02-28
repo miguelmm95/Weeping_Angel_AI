@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1778377369636108781}
   - component: {fileID: 1778377369636108778}
   - component: {fileID: 1778377369636108779}
-  - component: {fileID: 1268478162266762439}
+  - component: {fileID: 1460513978223137544}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1778377369636108776}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1778377370272427586}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1778377369636108778
 Camera:
@@ -48,9 +48,17 @@ Camera:
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -85,7 +93,7 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1778377369636108776}
   m_Enabled: 1
---- !u!114 &1268478162266762439
+--- !u!114 &1460513978223137544
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,9 +102,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1778377369636108776}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2a04896742b820459764067502da742, type: 3}
+  m_Script: {fileID: 11500000, guid: 313afe882b3a0d64cbec7905c847bed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1778377370272427585
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1778377370272427586}
   - component: {fileID: 1778377370272427587}
-  - component: {fileID: 1778377370272427584}
+  - component: {fileID: 210770621182657657}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -122,6 +134,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1778377370272427585}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -129,7 +142,6 @@ Transform:
   m_Children:
   - {fileID: 1778377369636108781}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &1778377370272427587
 CharacterController:
@@ -139,9 +151,17 @@ CharacterController:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1778377370272427585}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
@@ -149,7 +169,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1778377370272427584
+--- !u!114 &210770621182657657
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,7 +178,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1778377370272427585}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3fabefe519d8644a8f1a51ecd78979d, type: 3}
+  m_Script: {fileID: 11500000, guid: 58f9681e8f4aca743a65cd4ea30051a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canSprint: 1
@@ -177,13 +197,13 @@ MonoBehaviour:
   standingCenter: {x: 0, y: 0, z: 0}
   crouchingCenter: {x: 0, y: 0.5, z: 0}
   jumpForce: 8
-  gravity: -13
-  mouseSensitivity: 20
+  gravity: 13
+  mouseSensitivity: 3.5
   upperLookLimit: 90
   lowerLookLimit: 90
-  moveSmoothTime: 0.2
+  moveSmoothTime: 0.3
   cameraSmoothTime: 0.03
-  walkBobSpeed: 10
+  walkBobSpeed: 14
   walkBobAmount: 0.05
   sprintBobSpeed: 18
   sprintBobAmount: 0.1
